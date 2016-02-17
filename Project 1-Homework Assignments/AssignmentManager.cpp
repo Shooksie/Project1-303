@@ -26,3 +26,7 @@ void assignmentManager::printOrdered() {
 void assignmentManager::printUncomp() {
 
 }
+
+void assignmentManager::sortlist(list<assignments> assignList) {
+
+}

@@ -15,3 +15,5 @@ public:
 	void printComp();
 	void printUncomp();
 };
+
+
