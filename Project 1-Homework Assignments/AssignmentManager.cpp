@@ -4,6 +4,7 @@ using namespace std;
 
 
 void assignmentManager::addAssignment(assignments newassign) {
+  cout << "hey";
 
 }
 
