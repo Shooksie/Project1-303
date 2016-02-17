@@ -4,11 +4,13 @@ using namespace std;
 
 
 void assignmentManager::addAssignment(assignments newassign) {
+	if(newassign.)
+
 
 }
 
 void assignmentManager::checkComplete() {
-
+	
 }
 
 void assignmentManager::checkUncomplete() {

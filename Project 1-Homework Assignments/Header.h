@@ -7,9 +7,11 @@ using namespace std;
 class assignments {
 private:
 	int dueday, duemonth, dueyear;
-	string assignmentName, dueDate;
+	string assignmentName, dueDate, assignedDate, status;
 	bool completed=false;
+
 public:
+	bool getComplete();
 	int getDay();
 	int getMonth();
 	int getYear();

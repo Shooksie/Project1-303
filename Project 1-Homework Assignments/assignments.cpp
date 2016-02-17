@@ -10,8 +10,11 @@ string assignments::getName() {
 }
 
 void assignments::changecomplete() {
-	completed = true;
-	return;
+	if (!completed) {
+		completed = true;
+		return;
+	}
+	completed = false;
 }
 
 void assignments::setDueDate(int day, int month, int year) {
@@ -30,4 +33,23 @@ int assignments::getDay() {
 
 int assignments::getMonth(){
 	return duemonth;
+}
+
+int assignments::getYear() {
+	return dueyear;
+}
+void assignments::getReadData(istream& in) {
+	in >> assignedDate;
+	in >> assignmentName;
+	in >> dueDate;
+	in >> status;
+	if (status == "completed" || status == "Late") {
+		completed = true;
+	}
+	else if (status == "Assigned") {
+		completed = false;
+	}
+}
+bool assignments::getComplete() {
+	return completed;
 }
