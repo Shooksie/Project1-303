@@ -1,19 +1,21 @@
-#include "Header.h"
+#include "Assignment.h"
 
 using namespace std;
 
 class assignmentManager {
 private:
-	list<assignments> completed;
-	list<assignments> uncomplete;
+	list<assignment> completed;
+	list<assignment> uncomplete;
 public:
 	void checkComplete();
 	void checkUncomplete();
-	void addAssignment(assignments newassign);
-	void sortlist(list<assignments> assignList);
+	void addAssignment(assignment newassign);
+	void sortlist(list<assignment> assignList);
 	void printOrdered();
 	void printComp();
 	void printUncomp();
 };
+
+
 
 

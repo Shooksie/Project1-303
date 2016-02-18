@@ -1,15 +1,15 @@
-#include "Header.h"
+#include "Assignment.h"
 
 
-string assignments::getDueDate() {
+string assignment::getDueDate() {
 	return dueDate;
 }
 
-string assignments::getName() {
+string assignment::getName() {
 	return assignmentName;
 }
 
-void assignments::changecomplete() {
+void assignment::changecomplete() {
 	if (!completed) {
 		completed = true;
 		return;
@@ -17,28 +17,12 @@ void assignments::changecomplete() {
 	completed = false;
 }
 
-void assignments::setDueDate(int day, int month, int year) {
-	dueday = day;
-	duemonth = month;
-	dueyear = year;
-}
 
-void assignments::setName(string description) {
+void assignment::setName(string description) {
 	assignmentName = description;
 }
 
-int assignments::getDay() {
-	return dueday;
-}
-
-int assignments::getMonth(){
-	return duemonth;
-}
-
-int assignments::getYear() {
-	return dueyear;
-}
-void assignments::getReadData(istream& in) {
+void assignment::getReadData(istream& in) {
 	in >> assignedDate;
 	in >> assignmentName;
 	in >> dueDate;
@@ -50,6 +34,6 @@ void assignments::getReadData(istream& in) {
 		completed = false;
 	}
 }
-bool assignments::getComplete() {
+bool assignment::getComplete() {
 	return completed;
 }
