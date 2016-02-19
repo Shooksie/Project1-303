@@ -17,7 +17,6 @@ void assignment::changecomplete() {
 	completed = false;
 }
 
-
 void assignment::setName(string description) {
 	assignmentName = description;
 }
@@ -36,4 +35,17 @@ void assignment::getReadData(istream& in) {
 }
 bool assignment::getComplete() {
 	return completed;
+}
+
+string assignment::getAssignedDate() {
+	return assignedDate;
+}
+
+string assignment::getStatus() {
+	return status;
+}
+
+void assignment::printAssignment(ostream& output){
+	output << "Due Date: " << getDueDate() << ", Description: " << getName();
+	output << ", Assigned Date: " << getAssignedDate() << ", Status: " << getStatus() << endl;
 }
