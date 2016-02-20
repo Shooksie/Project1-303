@@ -8,7 +8,7 @@ using namespace std;
 void main() {
 
 	ifstream fin("input.txt");
-	ofstream fout("output.txt");
+
 
 	// Check for file errors first
 	if (!fin)
