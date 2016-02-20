@@ -22,11 +22,13 @@ void main() {
 
 	assignmentManager MainAssignments;
 	assignment assignmentNew;
-	MainAssignments.addAssignment(assignmentNew);
 
 	assignmentNew.getReadData(fin);
 
-	cout << assignmentNew.getDueDate();
+	MainAssignments.addAssignment(assignmentNew);
+
+
+	assignmentNew.printAssignment(cout);
 	/*
 	int answer;
 	cout << "Welcome to Assignment Manager!" << endl << endl << "Would you like to being? " << "Yes = 1  &  No = 0" << endl;
