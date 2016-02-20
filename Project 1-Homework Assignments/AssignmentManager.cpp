@@ -5,19 +5,24 @@ using namespace std;
 
 
 void assignmentManager::addAssignment(assignment newassign) {
-	if (newassign.getComplete())
+	//Adds an assignment
+	if (newassign.getComplete())//check to see if assignment has been completed or not
 	{
 		completed.push_front(newassign);
+		//if completed it pushes assignment to the front of the Completed List
 		return;
 	}
 	uncomplete.push_front(newassign);
+	//if its not completed it pushes the assignment to the front of the Uncompleted List
 	return;
 }
 
 void assignmentManager::checkComplete() {
-	list<assignment>::iterator itr;
+	/* goes through the Uncompleted List to make sure there are 
+	no Completed assignments left in the Uncompleted List*/
+	list<assignment>::iterator itr;//Uses Iterator
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
-		if (itr->getComplete()) {
+		if (itr->getComplete()) { //if itr->getComplete() return true then item as to swaped
 			completed.push_front(*itr);
 			uncomplete.erase(itr);
 		}
@@ -26,6 +31,8 @@ void assignmentManager::checkComplete() {
 }
 
 void assignmentManager::checkUncomplete() {
+	/*goes through the Completed List to make sure there are 
+	no UnCompleted assignments left in the completed List*/  
 	list<assignment>::iterator itr;
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
 		if (itr->getComplete()) {
