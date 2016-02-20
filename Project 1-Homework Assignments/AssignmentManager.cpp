@@ -36,8 +36,8 @@ void assignmentManager::checkUncomplete() {
 	list<assignment>::iterator itr;//declare an Iterator
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
 		if (!itr->getComplete()) {/*if !itr->getComplete() return true then item as to swaped*/
-			completed.push_front(*itr);
-			uncomplete.remove(*itr);
+			uncomplete.push_front(*itr);
+			completed.erase(itr);
 		}
 	}
 	return;
@@ -70,36 +70,35 @@ void assignmentManager::printUncomp() {//prints all uncompleted assignments
 void assignmentManager::sortlist(list<assignment> assignList) {
 	list<assignment>::iterator itr;
 	list<assignment>::iterator itr2;
-	itr = assignList.begin();
+	itr = assignList.begin();//
 	itr2 = assignList.end();
 	int index = 0;
 	int length = assignList.size();
 	while (index < length)
 	{
-		if (itr->date1 > itr2->date1)
+		if (itr->date2 > itr2->date2)
 		{
-			assignList.push_back(*itr);
-			assignList.pop_front();
-			itr = assignList.begin();
-			itr2++;
+			assignList.push_front(*itr);
+			assignList.pop_back();
 		}
-		else if (itr->date1 < itr2->date2) {
+		else if (itr->date2 < itr2->date2) {
 			bool loop = true;
-			while (loop) {
+			while (itr != itr2) {
 				itr2--;
-				if (itr->date1 > itr2->date1)
+				if (itr->date2 > itr2->date2)
 				{
-					assignList.insert(itr2++, *itr);
-					assignList.pop_front();
-					itr = assignList.begin();
 					itr2++;
-					loop = false;
-				}
+					assignList.insert(itr2, *itr);
+					assignList.pop_back();
+					itr = assignList.begin();
+					itr2 = itr;
 				
+				}
 			}
 		}
+		itr2 = assignList.end();
+		itr = assignList.begin();
 		index++;
-	}
 
-
+	
 }
