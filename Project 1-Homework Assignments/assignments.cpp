@@ -51,6 +51,6 @@ string assignment::getStatus() {
 }
 
 void assignment::printAssignment(ostream& output){
-	output << "Due Date: " << getDueDate() << ", Description: " << getName();
-	output << ", Assigned Date: " << getAssignedDate() << ", Status: " << getStatus() << endl;
+	output << "Due Date: " << getDueDate() << " Description: " << getName();
+	output << " Assigned Date: " << getAssignedDate() << " Status: " << getStatus() << endl;
 }
