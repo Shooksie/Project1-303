@@ -70,8 +70,8 @@ void assignmentManager::printUncomp() {//prints all uncompleted assignments
 void assignmentManager::sortlist(list<assignment> assignList) {
 	list<assignment>::iterator itr;
 	list<assignment>::iterator itr2;
-	itr = assignList.begin();//
-	itr2 = assignList.end();
+	itr = assignList.begin();//itr should always be the head of the list
+	itr2 = assignList.end();//itr2 should always be the tail of the list
 	int index = 0;
 	int length = assignList.size();
 	while (index < length)
