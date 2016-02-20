@@ -6,7 +6,7 @@ string assignment::getDueDate() {
 }
 
 string assignment::getName() {
-	return assignmentName;
+	return assignDefine;
 }
 
 void assignment::changecomplete() {
@@ -18,12 +18,12 @@ void assignment::changecomplete() {
 }
 
 void assignment::setName(string description) {
-	assignmentName = description;
+	assignDefine = description;
 }
 
 void assignment::getReadData(istream& in) {
 	in >> assignedDate;
-	in >> assignmentName;
+	in >> assignDefine;
 	in >> dueDate;
 	in >> status;
 	if (status == "completed" || status == "Late") {

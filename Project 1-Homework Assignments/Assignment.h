@@ -9,14 +9,14 @@ using namespace std;
 
 class assignment {
 private:
-	string dueDate;
-	string assignmentName, assignedDate, status;
-	bool completed=false;
+	string dueDate;//string that contains the due date
+	string assignDefine, assignedDate, status;//strings for the Assignment defintion, Assigned Date and the Status of the Item.
+	bool completed=false;//bool to check if the Assignment is Completed
 	
 public:
 	bool getComplete();//returns the status of the assignment.
-	void getReadData(istream& in);
-	string getDueDate();
+	void getReadData(istream& in);//function that reads in data from a file by passing the input stream refrence
+	string getDueDate();//
 	string getName();
 	string getAssignedDate();
 	string getStatus();
