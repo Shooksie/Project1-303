@@ -20,7 +20,7 @@ void assignmentManager::addAssignment(assignment newassign) {
 void assignmentManager::checkComplete() {
 	/* goes through the Uncompleted List to make sure there are 
 	no Completed assignments left in the Uncompleted List*/
-	list<assignment>::iterator itr;//Uses Iterator
+	list<assignment>::iterator itr;//declare an Iterator
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
 		if (itr->getComplete()) { //if itr->getComplete() return true then item as to swaped
 			completed.push_front(*itr);
@@ -33,9 +33,9 @@ void assignmentManager::checkComplete() {
 void assignmentManager::checkUncomplete() {
 	/*goes through the Completed List to make sure there are 
 	no UnCompleted assignments left in the completed List*/  
-	list<assignment>::iterator itr;
+	list<assignment>::iterator itr;//declare an Iterator
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
-		if (itr->getComplete()) {
+		if (!itr->getComplete()) {/*if !itr->getComplete() return true then item as to swaped*/
 			completed.push_front(*itr);
 			uncomplete.remove(*itr);
 		}
@@ -43,7 +43,7 @@ void assignmentManager::checkUncomplete() {
 	return;
 }
 
-void assignmentManager::printComp() {
+void assignmentManager::printComp() {//prints the completed list items
 	list<assignment>::iterator itr;
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
 		itr->printAssignment(cout);
@@ -51,12 +51,12 @@ void assignmentManager::printComp() {
 	return;
 }
 
-void assignmentManager::printOrdered() {
+void assignmentManager::printOrdered() {//prints all the assignments in order
 	printUncomp();
 	printComp();
 }
 
-void assignmentManager::printUncomp() {
+void assignmentManager::printUncomp() {//prints all uncompleted assignments
 	list<assignment>::iterator itr;
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
 		
