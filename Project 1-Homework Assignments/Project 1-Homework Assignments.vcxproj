@@ -146,8 +146,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h" />
-    <ClInclude Include="Header1.h" />
+    <ClInclude Include="Assignment.h" />
+    <ClInclude Include="AssignManger.h" />
+    <ClInclude Include="Date\Date.h" />
+    <ClInclude Include="Date\StringTokenizer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssignmentManager.cpp" />
