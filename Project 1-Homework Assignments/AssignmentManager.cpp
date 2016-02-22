@@ -3,6 +3,25 @@
 
 using namespace std;
 
+bool assignmentManager::searchAssignment(string assignedDate) {
+
+	bool found = false;
+
+	list<assignment>::iterator itr;
+	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
+
+		if (itr->getAssignedDate() == assignedDate) {
+			found = true;
+			return found;
+		}
+		else
+			found = false;
+
+		return found;
+	}
+
+}
+
 
 void assignmentManager::addAssignment(assignment newassign) {
 	//Adds an assignment
