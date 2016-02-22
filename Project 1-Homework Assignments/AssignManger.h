@@ -12,6 +12,9 @@ private:
 public:
 	void checkComplete();
 	void checkUncomplete();
+	void incrementCompleted();
+	void decrementCompleted();
+	int getNumberofAssignments();
 	void addAssignment(assignment newassign);
 	void sortlist(list<assignment> assignList);
 	void printOrdered();
