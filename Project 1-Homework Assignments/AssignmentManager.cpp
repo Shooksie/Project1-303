@@ -43,6 +43,21 @@ void assignmentManager::checkUncomplete() {
 	return;
 }
 
+void assignmentManager::incrementCompleted() {
+	number_Completed++;
+	number_Uncompleted--;
+}
+
+void assignmentManager::decrementCompleted(){
+	number_Completed--;
+	number_Uncompleted++;
+}
+
+
+int assignmentManager::getNumberofAssignments() {
+	return (number_Completed + number_Uncompleted);
+}
+
 void assignmentManager::printComp() {//prints the completed list items
 	list<assignment>::iterator itr;
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
