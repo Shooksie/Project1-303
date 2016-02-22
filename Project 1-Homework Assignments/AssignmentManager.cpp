@@ -10,10 +10,14 @@ void assignmentManager::addAssignment(assignment newassign) {
 	{
 		completed.push_front(newassign);
 		//if completed it pushes assignment to the front of the Completed List
+		number_Completed++;
+		total_Assignments++;
 		return;
 	}
 	uncomplete.push_front(newassign);
 	//if its not completed it pushes the assignment to the front of the Uncompleted List
+	number_Uncompleted++;
+	total_Assignments++;
 	return;
 }
 
