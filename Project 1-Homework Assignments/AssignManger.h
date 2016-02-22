@@ -6,6 +6,9 @@ class assignmentManager {
 private:
 	list<assignment> completed;
 	list<assignment> uncomplete;
+	int number_Completed;
+	int number_Uncompleted;
+	int total_Assignments;
 public:
 	void checkComplete();
 	void checkUncomplete();
