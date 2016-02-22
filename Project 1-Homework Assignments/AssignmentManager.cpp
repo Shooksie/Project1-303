@@ -17,6 +17,18 @@ void assignmentManager::addAssignment(assignment newassign) {
 	return;
 }
 
+int assignmentManager::getNumberCompleted() {
+	return number_Completed;
+}
+
+int assignmentManager::getNumberUncompleted() {
+	return number_Uncompleted;
+}
+
+int assignmentManager::getNumberofAssignments() {
+	return total_Assignments;
+}
+
 void assignmentManager::checkComplete() {
 	/* goes through the Uncompleted List to make sure there are 
 	no Completed assignments left in the Uncompleted List*/
