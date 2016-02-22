@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h">
+    <ClInclude Include="Assignments.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header1.h">
+    <ClInclude Include="AssignmentManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -26,10 +26,10 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="assignments.cpp">
+    <ClCompile Include="AssignmentManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AssignmentManager.cpp">
+    <ClCompile Include="Assignments.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

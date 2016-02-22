@@ -1,8 +1,9 @@
-#include "Header.h"
+#include "Assignments.h"
 
 
 string assignments::getDueDate() {
 	return dueDate;
+
 }
 
 string assignments::getName() {

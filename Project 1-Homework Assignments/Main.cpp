@@ -1,5 +1,5 @@
-#include"Header.h"
-#include"Header1.h"
+#include"Assignments.h"
+#include"AssignmentManager.h"
 #include <iostream>
 #include <fstream>
 
@@ -9,4 +9,8 @@ void main() {
 	assignmentManager MainAssignments;
 	assignments assignmentNew;
 	MainAssignments.addAssignment(assignmentNew);
+	string here;
+
+	cout << "This";
+
 }

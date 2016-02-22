@@ -1,10 +1,10 @@
-#include "Header1.h"
+#include "AssignmentManager.h"
 
 using namespace std;
 
 
 void assignmentManager::addAssignment(assignments newassign) {
-	if(newassign.)
+	
 
 
 }
