@@ -1,35 +1,12 @@
-#include "AssignManger.h"
-#include <iostream>
+#include "Header1.h"
 
 using namespace std;
 
-// Assignment
-void assignmentManager::addAssignment(assignment newassign) {
-	//Adds an assignment
-	if (newassign.getComplete())//check to see if assignment has been completed or not
-	{
-		completed.push_front(newassign);
-		//if completed it pushes assignment to the front of the Completed List
-		return;
-	}
-	uncomplete.push_front(newassign);
-	//if its not completed it pushes the assignment to the front of the Uncompleted List
-	return;
-}
+// Assignment add
+void assignmentManager::addAssignment(assignments newassign) {
+	if(newassign.)
 
-void assignmentManager::checkComplete() {
-	/* goes through the Uncompleted List to make sure there are 
-	no Completed assignments left in the Uncompleted List*/
-	list<assignment>::iterator itr;//declare an Iterator
-	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
-		if (itr->getComplete()) { //if itr->getComplete() return true then item as to swaped
-			completed.push_front(*itr);
-			uncomplete.erase(itr);
-		}
-	}
-	return;
-}
-
+		
 void assignmentManager::checkUncomplete() {
 	/*goes through the Completed List to make sure there are 
 	no UnCompleted assignments left in the completed List*/  
@@ -38,7 +15,7 @@ void assignmentManager::checkUncomplete() {
 		if (!itr->getComplete()) {/*if !itr->getComplete() return true then item as to swaped*/
 			completed.push_front(*itr);
 			uncomplete.remove(*itr);
-		}
+}
 	}
 	return;
 }
@@ -47,7 +24,7 @@ void assignmentManager::incrementCompleted() {
 	number_Completed++;
 	number_Uncompleted--;
 }
-
+	
 void assignmentManager::decrementCompleted(){
 	number_Completed--;
 	number_Uncompleted++;
@@ -77,8 +54,8 @@ void assignmentManager::printUncomp() {//prints all uncompleted assignments
 		
 			itr->printAssignment(cout);
 		
-	
-	}
+
+}
 	return;
 }
 
@@ -110,8 +87,8 @@ void assignmentManager::sortlist(list<assignment> assignList) {
 					itr2++;
 					loop = false;
 				}
-				
-			}
+
+}
 		}
 		index++;
 	}
