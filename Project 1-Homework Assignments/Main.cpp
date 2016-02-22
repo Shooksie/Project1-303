@@ -54,7 +54,34 @@ void main() {
 		if (answer == 2) {}
 		if (answer == 3) {}
 		if (answer == 4) {}
-		if (answer == 5) {}
+		if (answer == 5) {
+		
+		int the_Month;
+		int the_Day;
+		int the_Year;
+		string the_Date;
+
+		cout << "Enter the date of the assigned homework you wish to complete."<< endl;
+		cout << "Month (as a number) : ";
+		cin >> the_Month;
+		cout << "Day (as a number) : ";
+		cin >> the_Day;
+		cout << "Year (as a number) : ";
+		cin >> the_Year;
+
+
+		stringstream convert_Month, convert_Day, convert_Year; 
+
+		convert_Month << the_Month;
+		convert_Day << the_Day;
+		convert_Year << the_Year;
+
+		the_Date = convert_Month.str();
+		the_Date = the_Date.append("-") + convert_Day.str();
+		the_Date = the_Date.append("-") + convert_Year.str();
+
+		cout << the_Date;
+		}
 		if (answer == 6) {}
 		if (answer == 7) {}
 		if (answer == 8) {}
