@@ -3,6 +3,21 @@
 
 using namespace std;
 
+int assignmentManager::getNumberCompleted(){
+	return number_Completed;
+}
+
+int assignmentManager::getNumberLate(){
+	return number_Late;
+}
+
+int assignmentManager::getNumberUncompleted(){
+	return number_Uncompleted;
+}
+
+int assignmentManager::getNumberofAssignments(){
+	return total_Assignments;
+}
 
 void assignmentManager::addAssignment(assignment newassign) {
 	//Adds an assignment
