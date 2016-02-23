@@ -32,7 +32,7 @@ void main() {
 
 
 	int answer;
-	cout << "Welcome to Assignment Manager!" << endl << endl << "Would you like to being? " << "Yes = 1  &  No = 0" << endl;
+	cout << "Welcome to Assignment Manager!" << endl << endl << "Would you like to begin? " << endl << "Yes = 1  &  No = 0" << endl;
 	cin >> answer;
 	while (answer != 0 && answer != 1) {
 		cout << endl << "Not Valid Input.  Please Try Again." << endl;
@@ -41,6 +41,7 @@ void main() {
 	}
 	if (answer == 0) {
 		cout << endl << "Good Bye!" << endl;
+		return;
 	}
 
 	else if (answer == 1) {
@@ -74,7 +75,7 @@ void main() {
 			string the_Year;
 			string the_Date;
 
-			cout << "Enter the date of the assigned homework you wish to complete." << endl;
+			cout << "Enter the assigned date of the homework you wish to complete." << endl;
 			cout << "Month (as a number) : ";
 			cin >> int_Month;
 			cout << "Day (as a number) : ";
@@ -154,7 +155,10 @@ void main() {
 			}
 		}
 		if (answer == 7) {}
-		if (answer == 8) {}
+		if (answer == 8) {
+			cout << endl << "Good Bye!" << endl;
+			return;
+		}
 
 	}
 
