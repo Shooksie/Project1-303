@@ -1,3 +1,6 @@
+#include "Assignment.h"
+
+
 //////////////////////////////////////////////////toptip.c
 void assignment::trim(string& s) {
 

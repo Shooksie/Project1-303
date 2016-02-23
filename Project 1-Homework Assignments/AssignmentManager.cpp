@@ -59,7 +59,9 @@ void assignmentManager::checkComplete() {
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
 		if (itr->getComplete()) { //if itr->getComplete() return true then item as to swaped
 			completed.push_front(*itr);
+			number_Completed++;
 			uncomplete.erase(itr);
+			number_Uncompleted--;
 		}
 	}
 	return;
@@ -72,7 +74,9 @@ void assignmentManager::checkUncomplete() {
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
 		if (!itr->getComplete()) {/*if !itr->getComplete() return true then item as to swaped*/
 			completed.push_front(*itr);
+			number_Uncompleted++;
 			uncomplete.remove(*itr);
+			number_Completed--;
 		}
 	}
 	return;
@@ -103,7 +107,7 @@ void assignmentManager::printUncomp() {//prints all uncompleted assignments
 }
 
 void assignmentManager::sortlist(list<assignment> assignList) {
-	list<assignment>::iterator itr;
+	/*list<assignment>::iterator itr;
 	list<assignment>::iterator itr2;
 	itr = assignList.begin();
 	itr2 = assignList.end();
@@ -135,6 +139,6 @@ void assignmentManager::sortlist(list<assignment> assignList) {
 		}
 		index++;
 	}
-
+	*/
 
 }
