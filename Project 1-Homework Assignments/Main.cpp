@@ -30,7 +30,7 @@ void main() {
 
 
 	int answer;
-	cout << "Welcome to Assignment Manager!" << endl << endl << "Would you like to being? " << "Yes = 1  &  No = 0" << endl;
+	cout << "Welcome to Assignment Manager!" << endl << endl << "Would you like to begin? " << "Yes = 1  &  No = 0" << endl;
 	cin >> answer;
 	while (answer != 0 && answer != 1) {
 		cout << endl << "Not Valid Input.  Please Try Again." << endl;
@@ -151,7 +151,10 @@ void main() {
 				cout << endl << "There is " << MainAssignments.getNumberLate() << " late assignment." << endl;
 			}
 		if (answer == 7) {}
-		if (answer == 8) {}
+		if (answer == 8) {
+			cout << endl << "Good Bye!" << endl;
+			return;
+		}
 
 	}
 
