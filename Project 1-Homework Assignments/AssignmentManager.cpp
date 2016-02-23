@@ -52,6 +52,10 @@ int assignmentManager::getNumberofAssignments() {
 	return total_Assignments;
 }
 
+int assignmentManager::getNumberLate(){
+	return number_Late;
+}
+
 void assignmentManager::checkComplete() {
 	/* goes through the Uncompleted List to make sure there are 
 	no Completed assignments left in the Uncompleted List*/
