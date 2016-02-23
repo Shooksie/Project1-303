@@ -21,6 +21,7 @@ public:
 	void printOrdered();
 	void printComp();
 	void printUncomp();
+	void printLate();
 };
 
 
