@@ -7,12 +7,14 @@ private:
 	int number_Completed = 0;
 	int total_Assignments = 0;
 	int number_Uncompleted = 0;
+	int number_Late = 0;
 	list<assignment> completed;
 	list<assignment> uncomplete;
 public:
 	int getNumberCompleted();
 	int getNumberUncompleted();
 	int getNumberofAssignments();
+	int getNumberLate();
 	bool searchAssignment(string assignedDate);
 	void checkComplete();
 	void checkUncomplete();
