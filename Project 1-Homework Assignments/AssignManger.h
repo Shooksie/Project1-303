@@ -16,6 +16,8 @@ public:
 	bool completeAssignment(string assignedDate);
 	void checkComplete();
 	void checkUncomplete();
+	bool editdueDate(string& assignedDate);
+	bool editDescription(string& theDate);
 	int getNumberCompleted();
 	int getNumberLate();
 	int getNumberUncompleted();
@@ -29,3 +31,4 @@ public:
 	void printLate();
 	void sort();
 };
+

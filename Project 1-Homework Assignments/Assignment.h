@@ -31,6 +31,7 @@ public:
 	Date date2 = dueDate;
 	bool compare(assignment toCompare);
 };
+};
 
 #endif
 

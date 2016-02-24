@@ -4,7 +4,6 @@
 using namespace std;
 
 bool assignmentManager::searchAssignment(string assignedDate) {
-;
 
 	list<assignment>::iterator itr;
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
@@ -86,10 +85,10 @@ void assignmentManager::checkUncomplete() {
 	list<assignment>::iterator itr;//declare an Iterator
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
 		if (!itr->getComplete()) {/*if !itr->getComplete() return true then item as to swaped*/
-				completed.push_front(*itr);  
-				list<assignment>::iterator itrTemp = itr;
-				itr++;
-				uncomplete.erase(itrTemp);
+			completed.push_front(*itr);
+			list<assignment>::iterator itrTemp = itr;
+			itr++;
+			uncomplete.erase(itrTemp);
 		}
 	}
 	return;
@@ -121,22 +120,32 @@ void assignmentManager::printUncomp() {//prints all uncompleted assignments
 
 void assignmentManager::writeTofile(ostream& foutput) {
 	list<assignment>::iterator itr;
+	int number = 0;
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
+		if (number != 0) {
+			foutput << endl;
+		}
 		itr->printTofile(foutput);
+		number++;
 	}
+	number = 0;
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
+		if (number < completed.size()) {
+			foutput << endl;
+		}
 		itr->printTofile(foutput);
+		number++;
 	}
 }
 void assignmentManager::sortlist(list<assignment> assignList) {
-	
+
 	list<assignment>::iterator itr;
 	list<assignment>::iterator itr2;
 	itr = assignList.begin();
 	itr2 = assignList.end();
 	int index = 0;
 	int length = assignList.size();
-	while (index < length){
+	while (index < length) {
 		cout << itr->date1.toString();
 		cout << itr2->date1.toString();
 		Date dateA = itr->date1;
@@ -189,6 +198,58 @@ bool assignmentManager::completeAssignment(string assignedDate) {
 		if (itr->getAssignedDate() == assignedDate) {
 			itr->changecomplete();
 			checkComplete();
+			return true;
+		}
+	}
+	return false;
+}
+
+bool assignmentManager::editdueDate(string& assignedDate)
+{
+	list<assignment>::iterator itr;
+	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
+
+		if (itr->getAssignedDate() == assignedDate) {
+			cout << "what is the new due date for this assignment?" << endl;
+			string newDate;
+			cin >> newDate;
+			itr->modifyDueDate(newDate);
+			return true;
+		}
+	}
+	for (itr = completed.begin(); itr != completed.end(); itr++) {
+
+		if (itr->getAssignedDate() == assignedDate) {
+			cout << "what is the new due date for this assignment?" << endl;
+			string newDate;
+			cin >> newDate;
+			itr->modifyDueDate(newDate);
+			return true;
+		}
+	}
+	return false;
+
+}
+
+bool assignmentManager::editDescription(string& assignedDate) {
+	list<assignment>::iterator itr;
+	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
+
+		if (itr->getAssignedDate() == assignedDate) {
+			cout << "what is the new due date for this assignment?" << endl;
+			string description;
+			cin >> description;
+			itr->setName(description);
+			return true;
+		}
+	}
+	for (itr = completed.begin(); itr != completed.end(); itr++) {
+
+		if (itr->getAssignedDate() == assignedDate) {
+			cout << "what is the new due date for this assignment?" << endl;
+			string description;
+			cin >> description;
+			itr->setName(description);
 			return true;
 		}
 	}

@@ -42,7 +42,7 @@ void assignment::getReadData(istream& in) {
 	dueDate = st.next_token();
 	status = st.next_token();
 	trim(assignedDate);
-	trim(dueDate);
+	trim(assignmentName);
 	trim(status);
 	trim(dueDate);
 
@@ -55,7 +55,7 @@ void assignment::getReadData(istream& in) {
 	else {
 
 	}
-	
+
 }
 /* when reading in from the text file, are we assuming that the status will be a part of it? becuase we have the options to
 change the status*/
@@ -80,7 +80,7 @@ void assignment::printAssignment(ostream& output) {
 }
 
 void assignment::printTofile(ostream& output) {
-	output << assignedDate << "," << assignmentName << "," << dueDate << "," << status << endl;
+	output << assignedDate << "," << assignmentName << "," << dueDate << "," << status;
 }
 
 bool assignment::compare(assignment toCompare) {
@@ -90,3 +90,7 @@ bool assignment::compare(assignment toCompare) {
 	}
 	return false;
 }
+void assignment::modifyDueDate(string& dueDate1) {
+	dueDate = dueDate1;
+	date2 = dueDate;
+}}
