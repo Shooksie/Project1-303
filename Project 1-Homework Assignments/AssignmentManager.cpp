@@ -1,49 +1,6 @@
-#include "AssignManger.h"
-#include <iostream>
+#include "Header1.h"
 
 using namespace std;
-
-bool assignmentManager::searchAssignment(string assignedDate) {
-
-	list<assignment>::iterator itr;
-	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
-
-		if (itr->getAssignedDate() == assignedDate) {
-			return true;
-		}
-	}
-	return false;
-}
-
-int assignmentManager::getNumberCompleted() {
-	return number_Completed;
-}
-
-int assignmentManager::getNumberLate() {
-	number_Late = 0;
-	list<assignment>::iterator itr;
-	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
-
-		if (itr->getStatus() == "late") {
-			number_Late++;
-		}
-	}
-	for (itr = completed.begin(); itr != completed.end(); itr++) {
-
-		if (itr->getStatus() == "late") {
-			number_Late++;
-		}
-	}
-	return number_Late;
-}
-
-int assignmentManager::getNumberUncompleted() {
-	return number_Uncompleted;
-}
-
-int assignmentManager::getNumberofAssignments() {
-	return total_Assignments;
-}
 
 
 void assignmentManager::addAssignment(assignment newassign) {
@@ -52,36 +9,29 @@ void assignmentManager::addAssignment(assignment newassign) {
 	{
 		completed.push_front(newassign);
 		//if completed it pushes assignment to the front of the Completed List
-		number_Completed++;
-		total_Assignments++;
 		return;
 	}
 	uncomplete.push_front(newassign);
 	//if its not completed it pushes the assignment to the front of the Uncompleted List
-	number_Uncompleted++;
-	total_Assignments++;
 	return;
 }
 
 void assignmentManager::checkComplete() {
-	/* goes through the Uncompleted List to make sure there are
+	/* goes through the Uncompleted List to make sure there are 
 	no Completed assignments left in the Uncompleted List*/
 	list<assignment>::iterator itr;//declare an Iterator
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
 		if (itr->getComplete()) { //if itr->getComplete() return true then item as to swaped
 			completed.push_front(*itr);
-			list<assignment>::iterator itrTemp = itr;
-			itr++;
-			uncomplete.erase(itrTemp);
-
+			uncomplete.erase(itr);
 		}
 	}
 	return;
 }
 
 void assignmentManager::checkUncomplete() {
-	/*goes through the Completed List to make sure there are
-	no UnCompleted assignments left in the completed List*/
+	/*goes through the Completed List to make sure there are 
+	no UnCompleted assignments left in the completed List*/  
 	list<assignment>::iterator itr;//declare an Iterator
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
 		if (!itr->getComplete()) {/*if !itr->getComplete() return true then item as to swaped*/
@@ -92,6 +42,21 @@ void assignmentManager::checkUncomplete() {
 		}
 	}
 	return;
+}
+
+void assignmentManager::incrementCompleted() {
+	number_Completed++;
+	number_Uncompleted--;
+}
+	
+void assignmentManager::decrementCompleted(){
+	number_Completed--;
+	number_Uncompleted++;
+}
+
+
+int assignmentManager::getNumberofAssignments() {
+	return (number_Completed + number_Uncompleted);
 }
 
 void assignmentManager::printComp() {//prints the completed list items
@@ -110,10 +75,10 @@ void assignmentManager::printOrdered() {//prints all the assignments in order
 void assignmentManager::printUncomp() {//prints all uncompleted assignments
 	list<assignment>::iterator itr;
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
-
-		itr->printAssignment(cout);
-
-
+		
+			itr->printAssignment(cout);
+		
+	
 	}
 	return;
 }
@@ -151,7 +116,7 @@ void assignmentManager::sortlist(list<assignment> assignList) {
 		Date dateA = itr->date1;
 		Date dateB = itr2->date1;
 		if (dateA > dateB)
-		{
+	{
 			assignList.push_back(*itr);
 			assignList.pop_front();
 			itr = assignList.begin();
@@ -218,18 +183,18 @@ bool assignmentManager::editdueDate(string& assignedDate)
 		}
 	}
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
-
+				
 		if (itr->getAssignedDate() == assignedDate) {
 			cout << "what is the new due date for this assignment?" << endl;
 			string newDate;
 			cin >> newDate;
 			itr->modifyDueDate(newDate);
 			return true;
+			}
 		}
-	}
 	return false;
 
-}
+	}
 
 bool assignmentManager::editDescription(string& assignedDate) {
 	list<assignment>::iterator itr;
