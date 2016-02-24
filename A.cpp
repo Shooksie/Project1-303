@@ -42,7 +42,7 @@ void assignment::getReadData(istream& in) {
 	dueDate = st.next_token();
 	status = st.next_token();
 	trim(assignedDate);
-	trim(dueDate);
+	trim(assignedDate);
 	trim(status);
 	trim(dueDate);
 	
