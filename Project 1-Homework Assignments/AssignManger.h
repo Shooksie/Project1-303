@@ -13,6 +13,7 @@ private:
 	int number_Late;
 public:
 	bool searchAssignment(string assignedDate);
+	bool completeAssignment(string assignedDate);
 	void checkComplete();
 	void checkUncomplete();
 	int getNumberCompleted();
@@ -26,4 +27,5 @@ public:
 	void printUncomp();
 	void writeTofile(ostream& output);
 	void printLate();
+	void sort();
 };

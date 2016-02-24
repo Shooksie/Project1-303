@@ -80,7 +80,7 @@ void assignment::printAssignment(ostream& output) {
 }
 
 void assignment::printTofile(ostream& output) {
-	output << assignedDate << "," << assignmentName << "," << dueDate << "," << status;
+	output << assignedDate << "," << assignmentName << "," << dueDate << "," << status << endl;
 }
 
 bool assignment::compare(assignment toCompare) {

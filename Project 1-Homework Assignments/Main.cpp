@@ -35,7 +35,8 @@ void main() {
 
 	bool again = true;
 	string theDate;
-
+	MainAssignments.checkComplete();
+	MainAssignments.checkUncomplete();
 	while (again) {
 
 		int selection = Menu();
@@ -72,8 +73,9 @@ void main() {
 			cin >> theDate;
 			// look through uncompleted assignments to see if there is an assignment with that assigned date
 			//if there is, change the status to complete
-			if (MainAssignments.searchAssignment(theDate) == true) {
+			if (MainAssignments.completeAssignment(theDate)) {
 				cout << endl << "Changing This Assignment to Complete!" << endl;
+
 				//THIS IS WHERE IM HAVING A LOGIC ISSUE
 			}
 			//if not valid date, let user know
@@ -96,7 +98,10 @@ void main() {
 
 			// Save Changes
 		case 7:
-			cout << "not done";
+			if (true) {
+				ofstream fout("input.txt");
+				MainAssignments.writeTofile(fout);
+			}
 			break;
 
 			// Exit

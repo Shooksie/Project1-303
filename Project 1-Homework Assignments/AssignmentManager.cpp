@@ -71,7 +71,10 @@ void assignmentManager::checkComplete() {
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
 		if (itr->getComplete()) { //if itr->getComplete() return true then item as to swaped
 			completed.push_front(*itr);
-			uncomplete.erase(itr);
+			list<assignment>::iterator itrTemp = itr;
+			itr++;
+			uncomplete.erase(itrTemp);
+
 		}
 	}
 	return;
@@ -84,7 +87,9 @@ void assignmentManager::checkUncomplete() {
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
 		if (!itr->getComplete()) {/*if !itr->getComplete() return true then item as to swaped*/
 				completed.push_front(*itr);  
-				uncomplete.erase(itr);
+				list<assignment>::iterator itrTemp = itr;
+				itr++;
+				uncomplete.erase(itrTemp);
 		}
 	}
 	return;
@@ -131,21 +136,23 @@ void assignmentManager::sortlist(list<assignment> assignList) {
 	itr2 = assignList.end();
 	int index = 0;
 	int length = assignList.size();
-	while (index < length)
-	{
-		
-		if (itr->compare(*itr2))
+	while (index < length){
+		cout << itr->date1.toString();
+		cout << itr2->date1.toString();
+		Date dateA = itr->date1;
+		Date dateB = itr2->date1;
+		if (dateA > dateB)
 		{
 			assignList.push_back(*itr);
 			assignList.pop_front();
 			itr = assignList.begin();
 			itr2++;
 		}
-		else if (!itr->compare(*itr2)) {
+		else if (dateA < dateB) {
 			bool loop = true;
 			while (loop) {
 				itr2--;
-				if (itr->compare(*itr))
+				if (dateA > dateB)
 				{
 					assignList.insert(itr2++, *itr);
 					assignList.pop_front();
@@ -167,4 +174,23 @@ void assignmentManager::printLate() { //prints all late assignments
 			itr->printAssignment(cout);
 		}
 	}
+}
+
+void assignmentManager::sort() {
+	sortlist(completed);
+	sortlist(uncomplete);
+}
+
+bool assignmentManager::completeAssignment(string assignedDate) {
+
+	list<assignment>::iterator itr;
+	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
+
+		if (itr->getAssignedDate() == assignedDate) {
+			itr->changecomplete();
+			checkComplete();
+			return true;
+		}
+	}
+	return false;
 }
