@@ -1,7 +1,9 @@
 #include"AssignManger.h"
 #include"Assignment.h"
+#include"Menu.h"
 #include <iostream>
 #include <fstream>
+
 
 using namespace std;
 
@@ -21,6 +23,7 @@ void main() {
 	assignmentManager MainAssignments;
 	assignment assignmentNew;
 
+	// Read in assignments and add them to the assignment manager
 	while (fin.good()) {
 
 		assignmentNew.getReadData(fin);
@@ -28,137 +31,99 @@ void main() {
 
 	}
 
+	cout << "Welcome to Assignment Manager!" << endl;
 
-	int answer;
-	cout << "Welcome to Assignment Manager!" << endl << endl << "Would you like to begin? " << "Yes = 1  &  No = 0" << endl;
-	cin >> answer;
-	while (answer != 0 && answer != 1) {
-		cout << endl << "Not Valid Input.  Please Try Again." << endl;
-		cin >> answer;
+	bool again = true;
+	string theDate;
 
-	}
-	if (answer == 0) {
-		cout << endl << "Good Bye!" << endl;
-	}
+	while (again) {
 
-	else if (answer == 1) {
-		cout << endl << setw(12) << "MENU" << endl << endl;
-		cout << "1 Display Assignments" << endl << "2 Add Assignment" << endl << "3 Edit Due Date" << endl << "4 Edit Description" << endl << "5 Complete Assignment"
-			<< endl << "6 Number of Late Assignments" << endl << "7 Save" << endl << "8 Exit" << endl << endl;
-		cout << "Enter a digit that corresponds with an action. " << endl;
-		cin >> answer;
-		while (answer != 1 && answer != 2 && answer != 3 && answer != 4 && answer != 5 && answer != 6 && answer != 7 && answer != 8) {
-			cout << endl << "Not Valid Input.  Please Try Again." << endl;
-			cin >> answer;
+		int selection = Menu();
 
-		}
-		if (answer == 1) {
+		switch (selection) {
+
+		// Display Assignments
+		case 1:
 			cout << endl << "COMPLETED ASSIGNMENTS" << endl << endl;
 			MainAssignments.printComp();
 			cout << endl << "==========================================================" << endl << endl;
 			cout << "UNCOMPLETED ASSIGNMENTS" << endl << endl;
 			MainAssignments.printUncomp();
+			break;
 
-		}
-		if (answer == 2) {}
-		if (answer == 3) {}
-		if (answer == 4) {}
-		if (answer == 5) {
-			int int_Month;
-			int int_Day;
-			int int_Year;
-			string the_Month;
-			string the_Day;
-			string the_Year;
-			string the_Date;
+		// Add Assignment
+		case 2:
+			cout << "not done";
+			break;
 
-			cout << "Enter the date of the assigned homework you wish to complete." << endl;
-			cout << "Month (as a number) : ";
-			cin >> int_Month;
-			cout << "Day (as a number) : ";
-			cin >> int_Day;
-			cout << "Year (as a number) : ";
-			cin >> int_Year;
+		// Edit Due Date
+		case 3:
+			cout << "not done";
+			break;
 
-			//Take into consideration leap year?? 
+		// Edit Description
+		case 4:
+			cout << "not done";
+			break;
 
-
-			//validating user input
-			while (int_Month > 12 || int_Month <= 0) {
-				cout << "You Entered an Invalid Month. Please Try again" << endl;
-				cout << "Month (as a number) : ";
-				cin >> int_Month;
-				cout << "Day (as a number) : ";
-				cin >> int_Day;
-				cout << "Year (as a number) : ";
-				cin >> int_Year;
-			}
-
-			//validating user input
-			while (int_Day > 31 || int_Day <= 0) {
-				cout << "You Entered an Invalid Day. Please Try again" << endl;
-				cout << "Month (as a number) : ";
-				cin >> int_Month;
-				cout << "Day (as a number) : ";
-				cin >> int_Day;
-				cout << "Year (as a number) : ";
-				cin >> int_Year;
-			}
-
-			//validating user input
-			while (int_Year < 0) {
-				cout << "You Entered an Invalid Year. Please Try again" << endl;
-				cout << "Month (as a number) : ";
-				cin >> int_Month;
-				cout << "Day (as a number) : ";
-				cin >> int_Day;
-				cout << "Year (as a number) : ";
-				cin >> int_Year;
-			}
-
-
-			stringstream convert_Month, convert_Day, convert_Year;
-
-			// typecasting
-			convert_Month << int_Month;
-			convert_Day << int_Day;
-			convert_Year << int_Year;
-
-			the_Month = convert_Month.str();
-			the_Day = convert_Day.str();
-			the_Year = convert_Year.str();
-
-			//creating the date as a string (user friendly)
-			the_Date = the_Month + "-" + the_Day + "-" + the_Year;
-
-
+		// Complete Assignment 
+		case 5:
+			cout << endl << "Enter the Date of the Assigned Homework You Wish to Complete. (Month-Day-Year)" << endl;
+			cin >> theDate;
 			// look through uncompleted assignments to see if there is an assignment with that assigned date
 			//if there is, change the status to complete
-			if (MainAssignments.searchAssignment(the_Date) == true) {
-				cout << "Changing this assignment to complete!" << endl;
+			if (MainAssignments.searchAssignment(theDate) == true) {
+				cout << endl << "Changing This Assignment to Complete!" << endl;
 				//THIS IS WHERE IM HAVING A LOGIC ISSUE
 			}
 			//if not valid date, let user know
 			else
-				cout << "Not a real assignment" << endl;
-		}
-		if (answer == 6) {
-
-			if (MainAssignments.getNumberLate() >1 || MainAssignments.getNumberofAssignments() == 0 )
-			cout << endl << "There are " << MainAssignments.getNumberLate() << " late assignments." << endl;
-
-			else if (MainAssignments.getNumberLate() == 1)
-				cout << endl << "There is " << MainAssignments.getNumberLate() << " late assignment." << endl;
+				cout << endl <<  "Not a Valid Date." << endl;
+			break;
+		
+		// Number of Late Assignments 
+		case 6:
+			if (MainAssignments.getNumberLate() > 1 || MainAssignments.getNumberofAssignments() == 0) {
+				cout << endl << "THERE ARE " << MainAssignments.getNumberLate() << " LATE ASSIGNMENTS" << endl << endl;
+				MainAssignments.printLate();
 			}
-		if (answer == 7) {}
-		if (answer == 8) {
-			cout << endl << "Good Bye!" << endl;
-			return;
+
+			else if (MainAssignments.getNumberLate() == 1) {
+				cout << endl << "THERE IS " << MainAssignments.getNumberLate() << " LATE ASSIGNMENT." << endl << endl;
+				MainAssignments.printLate();
+			}
+			break;
+
+		// Save Changes
+		case 7:
+			cout << "not done";
+			break;
+
+		// Exit
+		case 8:
+			again = false;
+			cout << endl << "Goodbye!" << endl;
+			break;
 		}
 
 	}
+	/*
 
+	Date newDate = assignmentNew.getAssignedDate();
 
+	cout << newDate.toString() << endl;
+
+	Date date = assignmentNew.date1("1-2-321");
+	string text = date.toString();
+	cout << text;
+
+	if (newDate > date) {
+		cout << "this happend later in time?";
+	}
+	else
+		cout << "earlier";
+
+*/
 	system("pause");
 	//////////////////////////////////////////////////////////////////////////Sarah
 }
