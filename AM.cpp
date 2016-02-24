@@ -157,3 +157,12 @@ void assignmentManager::sortlist(list<assignment> assignList) {
 
 
 }
+
+void assignmentManager::printLate() { //prints all late assignments
+	list<assignment>::iterator itr;
+	for (itr = completed.begin(); itr != completed.end(); itr++) {
+		if (itr->getStatus() == "late") {
+			itr->printAssignment(cout);
+		}
+	}
+}
