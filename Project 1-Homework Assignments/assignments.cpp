@@ -42,7 +42,7 @@ void assignment::getReadData(istream& in) {
 	dueDate = st.next_token();
 	status = st.next_token();
 	trim(assignedDate);
-	trim(dueDate);
+	trim(assignmentName);
 	trim(status);
 	trim(dueDate);
 	
@@ -50,15 +50,11 @@ void assignment::getReadData(istream& in) {
 	if (status == "completed" || status == "late") {
 		completed = true;
 	}
-	else if (status == "Assigned") {
+	else if (status == "assigned") {
 		completed = false;
 	}
 }
-/* when reading in from the text file, are we assuming that the status will be a part of it? becuase we have the options to 
-change the status*/
 
-/*basically what im getting at is that the file isnt real-time data, and that when you read in an item, its not like it was assigned
-at that moment*/
 bool assignment::getComplete() {
 	return completed;
 }
@@ -74,4 +70,14 @@ string assignment::getStatus() {
 void assignment::printAssignment(ostream& output) {
 	output << "Assigned Date: " << getAssignedDate() << endl << "Description: " << getName() << endl;
 	output << "Due Date: " << getDueDate() << endl << "Status: " << getStatus() << endl << endl;
+}
+
+Date assignment::date1(string dueDate) {
+	Date theDueDate(dueDate);
+	return  theDueDate;
+
+}
+Date assignment::date2(string assignedDate) {
+	Date theDueDate(dueDate);
+	return theDueDate;
 }
