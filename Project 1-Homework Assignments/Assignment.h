@@ -25,9 +25,11 @@ public:
 	void modifyDueDate(string& date);
 	void changecomplete();
 	void printAssignment(ostream& output);
+	void printTofile(ostream& output);
 	void trim(string& s);
-	Date date1(string dueDate);
-	Date date2(string assignedDate);
+	Date date1 = assignedDate;
+	Date date2 = dueDate;
+	bool compare(assignment toCompare);
 };
 
 #endif

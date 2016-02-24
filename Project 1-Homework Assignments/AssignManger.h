@@ -24,4 +24,6 @@ public:
 	void printOrdered();
 	void printComp();
 	void printUncomp();
+	void writeTofile(ostream& output);
+	void printLate();
 };

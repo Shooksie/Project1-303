@@ -78,3 +78,15 @@ void assignment::printAssignment(ostream& output) {
 	output << "Assigned Date: " << getAssignedDate() << endl << "Description: " << getName() << endl;
 	output << "Due Date: " << getDueDate() << endl << "Status: " << getStatus() << endl << endl;
 }
+
+void assignment::printTofile(ostream& output) {
+	output << assignedDate << "," << assignmentName << "," << dueDate << "," << status;
+}
+
+bool assignment::compare(assignment toCompare) {
+	Date date01(toCompare.getAssignedDate());
+	if (date1 > date01) {
+		return true;
+	}
+	return false;
+}

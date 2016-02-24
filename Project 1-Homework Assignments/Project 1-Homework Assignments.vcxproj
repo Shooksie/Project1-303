@@ -150,6 +150,7 @@
     <ClInclude Include="AssignManger.h" />
     <ClInclude Include="Date\Date.h" />
     <ClInclude Include="Date\StringTokenizer.h" />
+    <ClInclude Include="Menu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssignmentManager.cpp" />
