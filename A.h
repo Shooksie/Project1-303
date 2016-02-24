@@ -1,6 +1,7 @@
 #include <string>
 #include <list>
 #include "Date\Date.h"
+#include "Date\StringTokenizer.h"
 
 #ifndef ASSIGNMENT_HEADER
 #define ASSIGNMENT_HEADER
@@ -16,7 +17,6 @@ private:
 public:
 	bool getComplete();//returns the status of the assignment.
 	void getReadData(istream& in);
-	void trim(string& s);
 	string getDueDate();
 	string getName();
 	string getAssignedDate();
@@ -24,6 +24,7 @@ public:
 	void setName(string name);
 	void changecomplete();
 	void printAssignment(ostream& output);
+	void trim(string& s);
 	Date date1(string dueDate);
 	Date date2(string assignedDate);
 };

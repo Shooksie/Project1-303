@@ -22,6 +22,36 @@ bool assignmentManager::searchAssignment(string assignedDate) {
 
 }
 
+int assignmentManager::getNumberCompleted() {
+	return number_Completed;
+}
+
+int assignmentManager::getNumberLate() {
+	number_Late = 0;
+	list<assignment>::iterator itr;
+	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
+
+		if (itr->getStatus() == "late") {
+			number_Late++;
+		}
+	}
+	for (itr = completed.begin(); itr != completed.end(); itr++) {
+
+		if (itr->getStatus() == "late") {
+			number_Late++;
+		}
+	}
+	return number_Late;
+}
+
+int assignmentManager::getNumberUncompleted() {
+	return number_Uncompleted;
+}
+
+int assignmentManager::getNumberofAssignments() {
+	return total_Assignments;
+}
+
 
 void assignmentManager::addAssignment(assignment newassign) {
 	//Adds an assignment
@@ -40,22 +70,6 @@ void assignmentManager::addAssignment(assignment newassign) {
 	return;
 }
 
-int assignmentManager::getNumberCompleted() {
-	return number_Completed;
-}
-
-int assignmentManager::getNumberUncompleted() {
-	return number_Uncompleted;
-}
-
-int assignmentManager::getNumberofAssignments() {
-	return total_Assignments;
-}
-
-int assignmentManager::getNumberLate(){
-	return number_Late;
-}
-
 void assignmentManager::checkComplete() {
 	/* goes through the Uncompleted List to make sure there are 
 	no Completed assignments left in the Uncompleted List*/
@@ -63,9 +77,7 @@ void assignmentManager::checkComplete() {
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
 		if (itr->getComplete()) { //if itr->getComplete() return true then item as to swaped
 			completed.push_front(*itr);
-			number_Completed++;
 			uncomplete.erase(itr);
-			number_Uncompleted--;
 		}
 	}
 	return;
@@ -77,10 +89,8 @@ void assignmentManager::checkUncomplete() {
 	list<assignment>::iterator itr;//declare an Iterator
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
 		if (!itr->getComplete()) {/*if !itr->getComplete() return true then item as to swaped*/
-			completed.push_front(*itr);
-			number_Uncompleted++;
-			uncomplete.remove(*itr);
-			number_Completed--;
+			//completed.push_front(*itr);  NEEEDS TO BE WORKED
+			//uncomplete.remove(*itr);
 		}
 	}
 	return;
@@ -102,21 +112,12 @@ void assignmentManager::printOrdered() {//prints all the assignments in order
 void assignmentManager::printUncomp() {//prints all uncompleted assignments
 	list<assignment>::iterator itr;
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
-		
-			itr->printAssignment(cout);
-		
-	
+
+		itr->printAssignment(cout);
+
+
 	}
 	return;
-}
-
-void assignmentManager::printLate() { //prints all late assignments
-	list<assignment>::iterator itr;
-	for (itr = completed.begin(); itr != completed.end(); itr++){
-		if (itr->getStatus() == "late"){
-			itr->printAssignment(cout);
-		}
-	}
 }
 
 void assignmentManager::sortlist(list<assignment> assignList) {
@@ -147,11 +148,21 @@ void assignmentManager::sortlist(list<assignment> assignList) {
 					itr2++;
 					loop = false;
 				}
-				
+
 			}
 		}
 		index++;
 	}
 	*/
 
+
+}
+
+void assignmentManager::printLate() { //prints all late assignments
+	list<assignment>::iterator itr;
+	for (itr = completed.begin(); itr != completed.end(); itr++) {
+		if (itr->getStatus() == "late") {
+			itr->printAssignment(cout);
+		}
+	}
 }

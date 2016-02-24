@@ -2,22 +2,23 @@
 
 using namespace std;
 
+
 class assignmentManager {
 private:
-	int number_Completed = 0;
-	int total_Assignments = 0;
-	int number_Uncompleted = 0;
-	int number_Late = 0;
 	list<assignment> completed;
 	list<assignment> uncomplete;
+	int number_Completed;
+	int number_Uncompleted;
+	int total_Assignments;
+	int number_Late;
 public:
-	int getNumberCompleted();
-	int getNumberUncompleted();
-	int getNumberofAssignments();
-	int getNumberLate();
 	bool searchAssignment(string assignedDate);
 	void checkComplete();
 	void checkUncomplete();
+	int getNumberCompleted();
+	int getNumberLate();
+	int getNumberUncompleted();
+	int getNumberofAssignments();
 	void addAssignment(assignment newassign);
 	void sortlist(list<assignment> assignList);
 	void printOrdered();
@@ -25,7 +26,3 @@ public:
 	void printUncomp();
 	void printLate();
 };
-
-
-
-

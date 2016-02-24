@@ -32,20 +32,9 @@ void main() {
 
 
 	int answer;
-	cout << "Welcome to Assignment Manager!" << endl << endl << "Would you like to begin? " << "Yes = 1  &  No = 0" << endl;
-	cin >> answer;
-	while (answer != 0 && answer != 1) {
-		cout << endl << "Not Valid Input.  Please Try Again." << endl;
-		cin >> answer;
-	}
+	cout << "Welcome to Assignment Manager!" << endl;
 
-	bool again;
-
-	if (answer == 1)
-		again = true;
-	else
-		again = false;
-
+	bool again = true;
 
 	while (again) {
 
@@ -86,25 +75,13 @@ void main() {
 			cout << "not done";
 			break;
 		case 8:
-			cout << "not done";
+			again = false;
+			cout << endl << "Goodbye!" << endl;
 			break;
 		}
 
-		cout << "Would you like to go back to Menu? Yes = 1 & No = 0" << endl;
-		cin >> answer;
-
-		while (answer != 0 && answer != 1) {
-			cout << endl << "Not Valid Input.  Please Try Again." << endl;
-			cin >> answer;
-		}
-
-		if (answer == 1)
-			again = true;
-		else
-			again = false;
 	}
 
-	cout << endl << "Good Bye!" << endl;
 
 	system("pause");
 	//////////////////////////////////////////////////////////////////////////Sarah
