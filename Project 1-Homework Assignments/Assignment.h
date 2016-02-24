@@ -16,7 +16,6 @@ private:
 public:
 	bool getComplete();//returns the status of the assignment.
 	void getReadData(istream& in);
-	void trim(string& s);
 	string getDueDate();
 	string getName();
 	string getAssignedDate();
