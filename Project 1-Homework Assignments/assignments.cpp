@@ -1,5 +1,6 @@
 #include "Assignment.h"
 #include "Date\StringTokenizer.h"
+#include <iostream>
 
 //////////////////////////////////////////////////toptip.c
 void assignment::trim(string& s) {
@@ -12,6 +13,46 @@ void assignment::trim(string& s) {
 
 }
 //////////////////////////////////////////////////toptip.c
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+bool assignment::setAssignment(string assignment) {
+	String_Tokenizer st(assignment, ",");
+	assignedDate = st.next_token();
+	assignmentName = st.next_token();
+	dueDate = st.next_token();
+	status = st.next_token();
+	trim(assignedDate);
+	trim(assignmentName);
+	trim(dueDate);
+	trim(status);
+
+	// make sure the due date and assigned date are valid
+	// make sure the status isnt late or anything else
+
+	if (status != "completed" && status != "assigned") {
+		cout << "You Entered an Invalid Status." << endl;
+		return false;
+	}
+
+	if (status == "completed") {
+		completed = true;
+	}
+	else if (status == "assigned") {
+		completed = false;
+	}
+	return true;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 string assignment::getDueDate() {
 	return dueDate;
@@ -52,16 +93,9 @@ void assignment::getReadData(istream& in) {
 	else if (status == "assigned") {
 		completed = false;
 	}
-	else {
-
-	}
-
+	
 }
-/* when reading in from the text file, are we assuming that the status will be a part of it? becuase we have the options to
-change the status*/
 
-/*basically what im getting at is that the file isnt real-time data, and that when you read in an item, its not like it was assigned
-at that moment*/
 bool assignment::getComplete() {
 	return completed;
 }
@@ -80,7 +114,7 @@ void assignment::printAssignment(ostream& output) {
 }
 
 void assignment::printTofile(ostream& output) {
-	output << assignedDate << "," << assignmentName << "," << dueDate << "," << status;
+	output << assignedDate << ", " << assignmentName << ", " << dueDate << ", " << status;
 }
 
 bool assignment::compare(assignment toCompare) {
@@ -93,4 +127,4 @@ bool assignment::compare(assignment toCompare) {
 void assignment::modifyDueDate(string& dueDate1) {
 	dueDate = dueDate1;
 	date2 = dueDate;
-}}
+}
