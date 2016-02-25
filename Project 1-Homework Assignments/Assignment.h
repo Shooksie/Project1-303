@@ -21,6 +21,7 @@ public:
 	string getName();
 	string getAssignedDate();
 	string getStatus();
+	void setStatus(int num);
 	void setName(string name);
 	void modifyDueDate(string& date);
 	void changecomplete();
