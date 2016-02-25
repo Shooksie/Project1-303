@@ -15,13 +15,13 @@ private:
 	bool completed = false;
 
 public:
+	bool setAssignment(string assignment);
 	bool getComplete();//returns the status of the assignment.
 	void getReadData(istream& in);
 	string getDueDate();
 	string getName();
 	string getAssignedDate();
 	string getStatus();
-	void setStatus(int num);
 	void setName(string name);
 	void modifyDueDate(string& date);
 	void changecomplete();
@@ -31,7 +31,6 @@ public:
 	Date date1 = assignedDate;
 	Date date2 = dueDate;
 	bool compare(assignment toCompare);
-};
 };
 
 #endif

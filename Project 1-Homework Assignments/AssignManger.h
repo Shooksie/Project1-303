@@ -31,4 +31,3 @@ public:
 	void printLate();
 	void sort();
 };
-

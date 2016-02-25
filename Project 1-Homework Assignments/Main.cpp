@@ -8,7 +8,7 @@
 using namespace std;
 
 void main() {
-
+	
 	ifstream fin("input.txt");
 
 	// Check for file errors first
@@ -22,6 +22,12 @@ void main() {
 
 	assignmentManager MainAssignments;
 	assignment assignmentNew;
+
+	string assignedDate;
+	string description;
+	string dueDate;
+	string status;
+	string newAssignmentString;
 
 	// Read in assignments and add them to the assignment manager
 	while (fin.good()) {
@@ -43,47 +49,96 @@ void main() {
 
 		switch (selection) {
 
-			// Display Assignments
+		// Display Assignments
 		case 1:
 			cout << endl << "COMPLETED ASSIGNMENTS" << endl << endl;
 			MainAssignments.printComp();
-			cout << endl << "==========================================================" << endl << endl;
+			cout << "==========================================================" << endl << endl;
 			cout << "UNCOMPLETED ASSIGNMENTS" << endl << endl;
 			MainAssignments.printUncomp();
 			break;
 
-			// Add Assignment
+		// Add Assignment
 		case 2:
-			cout << "not done";
+
+			cout << endl << "Enter the Date of the Assigned Homework. (Month-Day-Year)" << endl;
+			cin >> assignedDate;
+			cout << endl << "Enter the Description of the Homework." << endl;
+			getchar();
+			getline(cin, description);
+			cout << endl << "Enter the Due Date of the Homework. (Month-Day-Year)" << endl;
+			cin >> dueDate;
+			cout << endl << "Enter the Status of the Homework. (completed or assigned)" << endl;
+			cin >> status;
+
+			//if not a valid assignment
+			newAssignmentString = assignedDate +","+ description + "," + dueDate + "," + status;
+			if (!assignmentNew.setAssignment(newAssignmentString)) {
+				cout << endl << "Cannot Add Assignment." << endl;
+			}
+
+			//if that assignment already exists
+			else if (MainAssignments.searchAssignment(assignedDate)) {
+				cout << endl << "Cannot Add Assignment. Already Exists." << endl;
+			}
+
+			//add assignment to completed or uncomplete list
+			else {
+				MainAssignments.addAssignment(assignmentNew);
+				cout << endl <<  "Created Assignment: ";
+				assignmentNew.printTofile(cout);
+				cout << endl;
+			}
+
 			break;
 
-			// Edit Due Date
+		// Edit Due Date
 		case 3:
-			cout << "not done";
+			cout << endl << "Enter the Date of the Assigned Homework You Wish to Modify. (Month-Day-Year)" << endl;
+			cin >> theDate;
+
+			//if not valid date, let user know
+			if (!MainAssignments.editdueDate(theDate)) {
+				cout << endl << "Not a Valid Date or Not Found." << endl;
+			}
 			break;
 
-			// Edit Description
+		// Edit Description
 		case 4:
-			cout << "not done";
-			break;
+			cout << endl << "Enter the Date of the Assigned Homework You Wish to Modify. (Month-Day-Year)" << endl;
+			cin >> theDate;
+			
+			//if you couldnt find or invalid date
+			if (!MainAssignments.editDescription(theDate)) {
+				cout << endl << "Not a Valid Date or Not Found." << endl;
+			}
 
-			// Complete Assignment 
+			break;
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// Complete Assignment 
 		case 5:
-			cout << endl << "Enter the Date of the Assigned Homework You Wish to Complete. (Month-Day-Year)" << endl;
+			cout << endl << "Enter the Date of the Assigned Homework You Wish to Modify. (Month-Day-Year)" << endl;
 			cin >> theDate;
 			// look through uncompleted assignments to see if there is an assignment with that assigned date
 			//if there is, change the status to complete
 			if (MainAssignments.completeAssignment(theDate)) {
 				cout << endl << "Changing This Assignment to Complete!" << endl;
 
-				//THIS IS WHERE IM HAVING A LOGIC ISSUE
 			}
 			//if not valid date, let user know
 			else
 				cout << endl << "Not a Valid Date." << endl;
 			break;
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			// Number of Late Assignments 
+		// Number of Late Assignments 
 		case 6:
 			if (MainAssignments.getNumberLate() > 1 || MainAssignments.getNumberofAssignments() == 0) {
 				cout << endl << "THERE ARE " << MainAssignments.getNumberLate() << " LATE ASSIGNMENTS" << endl << endl;
@@ -96,7 +151,7 @@ void main() {
 			}
 			break;
 
-			// Save Changes
+		// Save Changes
 		case 7:
 			if (true) {
 				ofstream fout("input.txt");
@@ -104,7 +159,7 @@ void main() {
 			}
 			break;
 
-			// Exit
+		// Exit
 		case 8:
 			again = false;
 			cout << endl << "Goodbye!" << endl;
@@ -112,18 +167,7 @@ void main() {
 		}
 
 	}
-	/*
-	Date newDate = assignmentNew.getAssignedDate();
-	cout << newDate.toString() << endl;
-	Date date = assignmentNew.date1("1-2-321");
-	string text = date.toString();
-	cout << text;
-	if (newDate > date) {
-	cout << "this happend later in time?";
-	}
-	else
-	cout << "earlier";
-	*/
+
 	system("pause");
-	//////////////////////////////////////////////////////////////////////////Sarah
+
 }
