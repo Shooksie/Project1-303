@@ -35,8 +35,7 @@ void main() {
 
 	bool again = true;
 	string theDate;
-	MainAssignments.checkComplete();
-	MainAssignments.checkUncomplete();
+
 	while (again) {
 
 		int selection = Menu();

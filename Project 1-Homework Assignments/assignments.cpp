@@ -93,4 +93,17 @@ bool assignment::compare(assignment toCompare) {
 void assignment::modifyDueDate(string& dueDate1) {
 	dueDate = dueDate1;
 	date2 = dueDate;
-}}
+}
+
+void assignment::setStatus(int num) {
+	if (num == 1) {
+		status = "completed";
+	}
+	else if(num == 2){
+		status = "late";
+	}
+	else if (num == 3) {
+		status == "assigned";
+	}
+	return;
+}

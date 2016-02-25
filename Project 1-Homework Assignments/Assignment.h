@@ -21,6 +21,7 @@ public:
 	string getName();
 	string getAssignedDate();
 	string getStatus();
+	void setStatus(int num);
 	void setName(string name);
 	void modifyDueDate(string& date);
 	void changecomplete();
@@ -31,7 +32,7 @@ public:
 	Date date2 = dueDate;
 	bool compare(assignment toCompare);
 };
-};
+
 
 #endif
 
