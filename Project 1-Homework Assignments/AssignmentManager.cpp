@@ -51,7 +51,7 @@ void assignmentManager::addAssignment(assignment& newassign) {
 	if (newassign.getComplete())//check to see if assignment has been completed or not
 	{
 		list<assignment>::iterator itr = completed.begin();
-		while (itr != completed.end() && itr->date1 < newassign.date1) {
+		while (itr != completed.end() && itr->date1 > newassign.date1) {
 			++itr;
 		}
 		completed.insert(itr, newassign);
@@ -61,7 +61,7 @@ void assignmentManager::addAssignment(assignment& newassign) {
 		return;
 	}
 	list<assignment>::iterator itr = uncomplete.begin();
-	while (itr != uncomplete.end() && itr->date1 < newassign.date1) {
+	while (itr != uncomplete.end() && itr->date2 > newassign.date2) {
 		++itr;
 	}
 	uncomplete.insert(itr, newassign);

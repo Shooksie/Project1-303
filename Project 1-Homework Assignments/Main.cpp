@@ -4,11 +4,31 @@
 #include <iostream>
 #include <fstream>
 
+string getLocalDate() {
+	time_t currentTime;
+	struct tm *localTime_s;
+
+	time(&currentTime);                   // Get the current time
+	localTime = localtime_s(&currentTime);  // Convert the current time to the local time
+
+	int Day = localTime_s->tm_mday;
+	int Month = localTime->tm_mon + 1;
+	int Year = localTime->tm_year + 1900;
+	ostringstream convert;
+	convert << Day;
+	string Day1 = convert.str();
+	convert << Month;
+	string Month1 = convert.str();
+	convert << Year;
+	string Year1 = convert.str();
+	string date = Month1 + "-" + Day1 + "-" + Year1;
+	return date;
+}
 
 using namespace std;
 
 void main() {
-
+	cout << getLocalDate();
 	ifstream fin("input.txt");
 
 	// Check for file errors first
@@ -126,3 +146,5 @@ void main() {
 	system("pause");
 	//////////////////////////////////////////////////////////////////////////Sarah
 }
+
+
