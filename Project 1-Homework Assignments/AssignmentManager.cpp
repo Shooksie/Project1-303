@@ -190,3 +190,15 @@ bool assignmentManager::editDescription(string& assignedDate) {
 	return false;
 }
 
+void assignment::setStatus(int num) {
+	if (num == 1) {
+		status = "completed";
+	}
+	else if(num == 2){
+		status = "late";
+	}
+	else if (num == 3) {
+		status == "assigned";
+	}
+	return;
+}
