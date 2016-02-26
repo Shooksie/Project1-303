@@ -3,11 +3,16 @@
 
 using namespace std;
 
+
 bool assignmentManager::searchAssignment(string assignedDate) {
 
 	list<assignment>::iterator itr;
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
-
+		if (itr->getAssignedDate() == assignedDate) {
+			return true;
+		}
+	}
+	for (itr = completed.begin(); itr != completed.end(); itr++) {
 		if (itr->getAssignedDate() == assignedDate) {
 			return true;
 		}
@@ -46,6 +51,31 @@ int assignmentManager::getNumberofAssignments() {
 }
 
 
+
+void assignmentManager::addAssignment(assignment& newassign) {
+	//Adds an assignment
+	if (newassign.getComplete())//check to see if assignment has been completed or not
+	{
+		list<assignment>::iterator itr = completed.begin();
+		while (itr != completed.end() && itr->getDay() < newassign.getDay()) {
+			++itr;
+		}
+		completed.insert(itr, newassign);
+		//if completed it pushes assignment to the front of the Completed List
+		number_Completed++;
+		total_Assignments++;
+		return;
+	}
+	list<assignment>::iterator itr = uncomplete.begin();
+	while (itr != uncomplete.end() && itr->getDay() < newassign.getDay()) {
+		++itr;
+	}
+	uncomplete.insert(itr, newassign);
+	//if its not completed it pushes the assignment to the front of the Uncompleted List
+	number_Uncompleted++;
+	total_Assignments++;
+	return;
+}
 
 void assignmentManager::printComp() {//prints the completed list items
 	list<assignment>::iterator itr;
@@ -90,30 +120,7 @@ void assignmentManager::writeTofile(ostream& foutput) {
 		number++;
 	}
 }
-void assignmentManager::addAssignment(assignment& newassign) {
-	//Adds an assignment
-	if (newassign.getComplete())//check to see if assignment has been completed or not
-	{
-		list<assignment>::iterator itr = completed.begin();
-		while (itr != completed.end() && itr->date1 < newassign.date1) {
-			++itr;
-		}
-		completed.insert(itr, newassign);
-		//if completed it pushes assignment to the front of the Completed List
-		number_Completed++;
-		total_Assignments++;
-		return;
-	}
-	list<assignment>::iterator itr = uncomplete.begin();
-	while (itr != uncomplete.end() && itr->date1 < newassign.date1) {
-		++itr;
-	}
-	uncomplete.insert(itr, newassign);
-	//if its not completed it pushes the assignment to the front of the Uncompleted List
-	number_Uncompleted++;
-	total_Assignments++;
-	return;
-}
+
 void assignmentManager::printLate() { //prints all late assignments
 	list<assignment>::iterator itr;
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
@@ -124,29 +131,16 @@ void assignmentManager::printLate() { //prints all late assignments
 }
 
 
-bool assignmentManager::completeAssignment(string assignedDate) {
-
-	list<assignment>::iterator itr;
-	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
-
-		if (itr->getAssignedDate() == assignedDate) {
-			itr->changecomplete();
-			checkComplete();
-			return true;
-		}
-	}
-	return false;
-}
-
 bool assignmentManager::editdueDate(string& assignedDate)
 {
 	list<assignment>::iterator itr;
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
 
 		if (itr->getAssignedDate() == assignedDate) {
-			cout << "what is the new due date for this assignment?" << endl;
+			cout << endl<< "What is the New Due Date for the Assignment?" << endl;
 			string newDate;
 			cin >> newDate;
+			cout << endl << "Changing the Due Date from " << itr->getDueDate() << " to " << newDate << "." << endl << endl;
 			itr->modifyDueDate(newDate);
 			return true;
 		}
@@ -154,10 +148,12 @@ bool assignmentManager::editdueDate(string& assignedDate)
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
 
 		if (itr->getAssignedDate() == assignedDate) {
-			cout << "what is the new due date for this assignment?" << endl;
+			cout << endl << "What is the New Due Date for the Assignment?" << endl;
 			string newDate;
 			cin >> newDate;
+			cout << endl << "Changing the Due Date from " << itr->getDueDate() << " to " << newDate << "." << endl << endl;
 			itr->modifyDueDate(newDate);
+			
 			return true;
 		}
 	}
@@ -170,9 +166,11 @@ bool assignmentManager::editDescription(string& assignedDate) {
 	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
 
 		if (itr->getAssignedDate() == assignedDate) {
-			cout << "what is the new due date for this assignment?" << endl;
+			cout << endl << "What is the New Description for the Assignment?" << endl;
 			string description;
-			cin >> description;
+			getchar();
+			getline(cin, description);
+			cout << endl << "Changing the Description from '" << itr->getName() << "' to '" << description << "'." << endl << endl;
 			itr->setName(description);
 			return true;
 		}
@@ -180,9 +178,11 @@ bool assignmentManager::editDescription(string& assignedDate) {
 	for (itr = completed.begin(); itr != completed.end(); itr++) {
 
 		if (itr->getAssignedDate() == assignedDate) {
-			cout << "what is the new due date for this assignment?" << endl;
+			cout << endl << "What is the New Description for the Assignment?" << endl;
 			string description;
-			cin >> description;
+			getchar();
+			getline(cin,description);
+			cout << endl << "Changing the Description from '" << itr->getName() << "' to '" << description << "'." << endl << endl;
 			itr->setName(description);
 			return true;
 		}
@@ -190,15 +190,21 @@ bool assignmentManager::editDescription(string& assignedDate) {
 	return false;
 }
 
-void assignment::setStatus(int num) {
-	if (num == 1) {
-		status = "completed";
+// look through uncompleted assignments to see if there is an assignment with that assigned date
+//if there is, change the status to complete
+bool assignmentManager::completeAssignment(string assignedDate) {
+
+	list<assignment>::iterator itr;
+	for (itr = uncomplete.begin(); itr != uncomplete.end(); itr++) {
+
+		if (itr->getAssignedDate() == assignedDate) {
+			itr->changecomplete();
+			itr->setStatus(1);
+			addAssignment(*itr);
+			uncomplete.erase(itr);
+			cout << endl << "Changing This Assignment to Complete!" << endl << endl;
+			return true;
+		}
 	}
-	else if(num == 2){
-		status = "late";
-	}
-	else if (num == 3) {
-		status == "assigned";
-	}
-	return;
+	return false;
 }

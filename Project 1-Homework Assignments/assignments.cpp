@@ -1,5 +1,8 @@
+#pragma once
 #include "Assignment.h"
 #include "Date\StringTokenizer.h"
+#include <iostream>
+
 
 //////////////////////////////////////////////////toptip.c
 void assignment::trim(string& s) {
@@ -12,6 +15,73 @@ void assignment::trim(string& s) {
 
 }
 //////////////////////////////////////////////////toptip.c
+string assignment::getDate() {
+	time_t now;
+	struct tm nowlocal;
+
+	now = time(NULL);
+
+	nowlocal = *localtime(&now);
+
+	ostringstream convert;
+	convert << nowlocal.tm_mday;
+	string day = convert.str();
+
+	ostringstream convert1;
+	convert1 << nowlocal.tm_mon + 1;
+	string month = convert1.str();
+
+	ostringstream convert2;
+	convert2 << nowlocal.tm_year + 1900;
+	string year = convert2.str();
+	string date = month + "-" + day + "-" + year;
+	return date;
+}
+///////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+bool assignment::setAssignment(string assignment) {
+	String_Tokenizer st(assignment, ",");
+	dueDate = st.next_token();
+	assignmentName = st.next_token();
+	assignedDate = st.next_token();
+	status = st.next_token();
+	trim(assignedDate);
+	trim(assignmentName);
+	trim(dueDate);
+	trim(status);
+
+	// make sure the due date and assigned date are valid
+	// make sure the status isnt late or anything else
+	if (status == "assigned") {
+		Date todaysDate = getDate();
+		Date due = dueDate;
+		if (todaysDate > due) {
+			status = "late";
+		}
+	}
+
+	if (status != "completed" && status != "assigned" && status != "late") {
+		cout << endl <<  "You Entered an Invalid Status." << endl;
+		return false;
+	}
+
+	if (status == "completed"  || status == "late") {
+		completed = true;
+	}
+	else if (status == "assigned") {
+		completed = false;
+	}
+	return true;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 string assignment::getDueDate() {
 	return dueDate;
@@ -36,32 +106,9 @@ void assignment::setName(string description) {
 void assignment::getReadData(istream& in) {
 	string line;
 	getline(in, line);
-	String_Tokenizer st(line, ",");
-	assignedDate = st.next_token();
-	assignmentName = st.next_token();
-	dueDate = st.next_token();
-	status = st.next_token();
-	trim(assignedDate);
-	trim(assignmentName);
-	trim(status);
-	trim(dueDate);
-
-	if (status == "completed" || status == "late") {
-		completed = true;
-	}
-	else if (status == "assigned") {
-		completed = false;
-	}
-	else {
-
-	}
-
+	setAssignment(line);
 }
-/* when reading in from the text file, are we assuming that the status will be a part of it? becuase we have the options to
-change the status*/
 
-/*basically what im getting at is that the file isnt real-time data, and that when you read in an item, its not like it was assigned
-at that moment*/
 bool assignment::getComplete() {
 	return completed;
 }
@@ -75,22 +122,35 @@ string assignment::getStatus() {
 }
 
 void assignment::printAssignment(ostream& output) {
-	output << "Assigned Date: " << getAssignedDate() << endl << "Description: " << getName() << endl;
-	output << "Due Date: " << getDueDate() << endl << "Status: " << getStatus() << endl << endl;
+	output << "Due Date: " << getDueDate() << endl << "Description: " << getName() << endl;
+	output << "Assigned Date: " << getAssignedDate() << endl <<  "Status: " << getStatus() << endl << endl;
 }
 
 void assignment::printTofile(ostream& output) {
-	output << assignedDate << "," << assignmentName << "," << dueDate << "," << status;
+	output << dueDate << ", " << assignmentName << ", " << assignedDate << ", " << status;
 }
 
-bool assignment::compare(assignment toCompare) {
-	Date date01(toCompare.getAssignedDate());
-	if (date1 > date01) {
-		return true;
-	}
-	return false;
-}
 void assignment::modifyDueDate(string& dueDate1) {
 	dueDate = dueDate1;
-	date2 = dueDate;
-}}
+}
+
+
+void assignment::setStatus(int num) {
+	if (num == 1) {
+		status = "completed";
+	}
+	else if (num == 2) {
+		status = "late";
+	}
+	else if (num == 3) {
+		status == "assigned";
+	}
+	return;
+}
+
+Date assignment::getDay() {
+	Date temp = dueDate;
+	return temp;
+
+}
+

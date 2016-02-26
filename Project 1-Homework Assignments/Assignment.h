@@ -1,10 +1,16 @@
+#pragma once
 #include <string>
 #include <list>
+#include <iostream>
+#include <ctime>
 #include "Date\Date.h"
 #include "Date\StringTokenizer.h"
 
-#ifndef ASSIGNMENT_HEADER
-#define ASSIGNMENT_HEADER
+
+#pragma warning(disable:4996)
+
+
+
 
 using namespace std;
 
@@ -15,27 +21,20 @@ private:
 	bool completed = false;
 
 public:
+	bool setAssignment(string assignment);
 	bool getComplete();//returns the status of the assignment.
 	void getReadData(istream& in);
 	string getDueDate();
 	string getName();
 	string getAssignedDate();
-	string getStatus();
 	void setStatus(int num);
+	string getStatus();
 	void setName(string name);
 	void modifyDueDate(string& date);
 	void changecomplete();
 	void printAssignment(ostream& output);
 	void printTofile(ostream& output);
 	void trim(string& s);
-	Date date1 = assignedDate;
-	Date date2 = dueDate;
-	bool compare(assignment toCompare);
+	Date getDay();
+	string getDate();
 };
-};
-
-#endif
-
-/* Shouldn't dueDate and assignedDate be Dates and not strings? 
-In that case we would not need date1 or date2. 
-Just wondering how these all tie together -Bailey */
