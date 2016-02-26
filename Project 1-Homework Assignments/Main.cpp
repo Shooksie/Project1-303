@@ -3,32 +3,36 @@
 #include"Menu.h"
 #include <iostream>
 #include <fstream>
+#include <ctime>
+#pragma warning(disable:4996)
 
-string getLocalDate() {
-	time_t currentTime;
-	struct tm *localTime_s;
-
-	time(&currentTime);                   // Get the current time
-	localTime = localtime_s(&currentTime);  // Convert the current time to the local time
-
-	int Day = localTime_s->tm_mday;
-	int Month = localTime->tm_mon + 1;
-	int Year = localTime->tm_year + 1900;
+string getDate() {
+	time_t now;
+	struct tm nowlocal;
+	
+	now = time(NULL);
+	
+	nowlocal = *localtime(&now);
+	
 	ostringstream convert;
-	convert << Day;
-	string Day1 = convert.str();
-	convert << Month;
-	string Month1 = convert.str();
-	convert << Year;
-	string Year1 = convert.str();
-	string date = Month1 + "-" + Day1 + "-" + Year1;
+	convert << nowlocal.tm_mday;
+	string day = convert.str();
+
+	ostringstream convert1;
+	convert1 << nowlocal.tm_mon + 1;
+	string month = convert1.str();
+
+	ostringstream convert2;
+	convert2 << nowlocal.tm_year + 1900;
+	string year = convert2.str();
+	string date = month + "-" + day + "-" + year;
 	return date;
 }
 
 using namespace std;
 
 void main() {
-	cout << getLocalDate();
+	cout << getDate();
 	ifstream fin("input.txt");
 
 	// Check for file errors first
